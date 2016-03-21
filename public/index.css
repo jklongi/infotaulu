@@ -1,0 +1,84 @@
+
+@font-face {
+    font-family: manteka;
+    src: url(/public/manteka.ttf);
+}
+
+body, html{
+	width: 100%;
+	min-height: 100% !important;
+    height: 100%
+	background: #87e0fd; /* Old browsers */
+	background: linear-gradient(to bottom, #87e0fd 0%,#53cbf1 40%,#05abe0 100%);
+	color:#FDFDFE;
+}
+
+#map{
+	height:600px;
+}
+
+.hourly{
+	min-height:200px;
+}
+
+.daily{
+	min-height:300px;
+}
+
+.departure {
+	padding: 10px 5px;
+}
+
+.time{
+	float: right;
+}
+
+.right{
+	float:right;
+}
+.left{
+	float:left;
+}
+
+.orange{
+	color:#FFEB3B;
+}
+
+.capitalize {
+	text-transform: capitalize;
+}
+
+.col-wrapper{
+	padding:5px;
+}
+
+.col-content {
+	padding: 5px 15px;
+	text-align: center;
+}
+
+.row{
+	margin-top: 10px;
+	padding-bottom: 20px
+}
+
+.col-separator:not(:last-of-type){
+	border-right:  1px solid #9AE0FF;
+}
+
+.content-separator{
+	height:10px;
+	width: 100%;
+}
+
+.separator{
+	border-bottom: 1px solid #9AE0FF;
+}
+
+.blue {
+  color:#3F51B5;
+}
+
+.red {
+  color:#F44336;
+}

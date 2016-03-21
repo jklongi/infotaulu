@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html ng-app="nodeapp">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Joonaksen infotaulu</title>
+
+  <link href="/scripts/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/public/index.css">
+  <link rel="stylesheet" href="/scripts/leaflet/dist/leaflet.css">
+  <script src="/scripts/jquery/dist/jquery.js"></script>
+  <script src="/scripts/moment/moment.js"></script>
+  <script src="/scripts/moment/locale/fi.js"></script>
+  <script src="/scripts/angular/angular.js"></script>
+  <script src="/public/core.js"></script>
+  <script src="/scripts/leaflet/dist/leaflet.js"></script>
+  <script src="/public/skycons.js"></script>
+  <!--<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>-->
+
+  <script>
+    /*
+    var socket = io.connect('http://83.145.232.209:8080');
+
+    socket.emit('&nodeapp;somepass type:1&');
+    socket.send('&nodeapp;somepass type:1&');
+    //socket.connect();
+
+    socket.on('connect', function() {
+      console.log('Client has connected to the server!');
+      
+      socket.emit('&nodeapp;somepass type:1&');
+      socket.send('&nodeapp;somepass type:1&');
+    });
+
+    socket.on('message',function(data) {
+      console.log('Received a message from the server!',data);
+    });
+    */
+  </script>
+
+</head>
+
+<body ng-controller="MainController">
+  <div class="container-fluid">
+    <div class="col-xs-12">
+
+      <div class="row separator">
+        <div class="col-xs-2 col-wrapper col-separator hourly" ng-repeat="weather in weatherdata.hourly.data | limitTo:6">
+          <div class="col-content">
+            <h4>{{weather.localtime}}</h4>
+
+            <div>
+              Temp:
+              <span ng-class="weather.temperature < 0 ? 'blue' : 'red'">
+                {{weather.temperature}}
+              </span>
+            </div>
+
+            <div>
+              Feels Like:
+              <span ng-class="weather.apparentTemperature < 0 ? 'blue' : 'red'">
+                {{weather.apparentTemperature}}
+              </span>
+            </div>
+
+            <div class="content-separator"></div>
+
+            <canvas class="{{weather.icon}}" width="64" height="64"></canvas>
+
+            <div>
+              {{weather.summary}}
+            </div>
+
+          </div>
+
+        </div> 
+      </div> 
+
+      <div class="row">
+        <div class="col-xs-2 col-wrapper col-separator daily" ng-repeat="weather in weatherdata.daily.data | limitTo:6">
+          <div class="col-content">
+            <h4>{{weather.localtime}}</h4>
+
+            <div>
+              Min:
+              <span ng-class="weather.temperatureMin < 0 ? 'blue' : 'red'">
+                {{weather.temperatureMin}}
+              </span>
+            </div>
+
+            <div>
+              Max:
+              <span ng-class="weather.temperatureMax < 0 ? 'blue' : 'red'">
+                {{weather.temperatureMax}} 
+              </span>
+            </div>
+
+            <div class="content-separator"></div>
+
+            <canvas class="{{weather.icon}}" width="64" height="64"></canvas>
+
+            <div>
+              {{weather.summary}}
+            </div>
+
+          </div>
+
+        </div> 
+      </div> 
+
+
+      <divc class="row">
+
+        <div class="col-xs-6">
+          <div id="map"></div> 
+        </div>
+
+        <div class="col-xs-6">
+
+          <div class="row">
+
+            <div ng-repeat="item in tyo" class="col-xs-4">
+              <h4>Töihin</h4>
+              <div ng-repeat="departure in item.departures">
+                <div class="departure separator">
+                  <span class="">{{departure.code}}</span>
+                  <div class="time">{{departure.time}}
+                    <span class="{{departure.code}} orange"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div ng-repeat="item in keskusta" class="col-xs-4">
+              <h4>Keskustaan</h4>
+              <div ng-repeat="departure in item.departures">
+                <div class="departure separator">
+                  <span class="">{{departure.code}}</span>
+                  <div class="time">{{departure.time}}
+                    <span class="{{departure.code}} orange"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div ng-repeat="item in viikki" class="col-xs-4">
+              <h4>Viikkiin</h4>
+              <div ng-repeat="departure in item.departures">
+                <div class="departure separator">
+                  <span class="">{{departure.code}}</span>
+                  <div class="time">{{departure.time}}
+                    <span class="{{departure.code}} orange"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div> 
+        </div>
+      </div>
+
+    </div> 
+  </div>
+
+  <link rel="stylesheet" href="/extra/css/leaflet.extra-markers.min.css">
+  <script src="/extra/js/leaflet.extra-markers.min.js"></script>
+  <script src="/public/map.js"></script>
+
+</body>
+</html>
